@@ -250,6 +250,20 @@ class integracaoDAO extends CI_Model
 		}
 	}
 
+	// Consulta de produto
+
+	public function getProduto($prodRef) 
+	{
+		$sql = "SELECT codigo, descricao, vendaprc, compraprc FROM produto WHERE codigo = ?";
+		$query = $this->db->query($sql, array($prodRef));
+
+		if ($query->num_rows() > 0) {
+			return $query->row('codigo');
+		} else {
+			return false;
+		}
+	}
+
 	// Consulta de pedido
 
 	public function getPedido($idPedido)
@@ -259,10 +273,8 @@ class integracaoDAO extends CI_Model
 		$query = $this->db->query($sql, array($idPedido));
 
 		if ($query->num_rows() > 0) {
-			// Se o cliente já existe, chama a função putCli para atualizar as informações
 			return $query->row('idvenda');
 		} else {
-			// Se o cliente não existe, chama a função setCliente para inserir um novo cliente
 			return false;
 		}
 	}

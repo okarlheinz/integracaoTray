@@ -182,6 +182,9 @@ class Integracao extends CI_Controller
 
 
 
+
+
+
 		foreach ($resposta->Orders as $key => $pedido) 
 		{
 			$curl = curl_init();
@@ -204,9 +207,7 @@ class Integracao extends CI_Controller
 			$err = curl_error($curl);
 			$resposta = json_decode($response);
 			$code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-// echo '<pre>';
-// 	print_r($resposta);
-// 	die;
+
 
 			$status = $resposta->Order->status;
 			$id = $resposta->Order->id;
@@ -227,6 +228,32 @@ class Integracao extends CI_Controller
 			$uf = $resposta->Order->Customer->state;
 			$telefone = $resposta->Order->Customer->phone;
 			$email = $resposta->Order->Customer->email;
+
+			    // Dados Produto venda
+				foreach ($resposta->Order->ProductsSold as $key => $produto) {
+					$data[] = array(
+						'prodId' => $produto->ProductsSold->id,
+						'prodRef' => $produto->ProductsSold->reference,
+						'prodDescricao' => $produto->ProductsSold->original_name,
+						'vendaprc' => $produto->ProductsSold->price,
+						'compraprc' => $produto->ProductsSold->cost_price,
+						'idvendaprod' => $produto->ProductsSold->order_id
+					);
+				}
+			
+				// Agora você tem todos os produtos desta venda armazenados no array $data
+			
+				// Imprimir os detalhes de todos os produtos desta venda
+				foreach ($data as $produto) {
+					echo '<pre>';
+					print_r('************************ ID Venda: ' . $id . ' | SKU: ' . $produto['prodId'] . ' | Codigo produto: ' . $produto['prodRef'] . ' ************************');
+				}
+			
+				// Se desejar, pode adicionar uma linha em branco após cada pedido
+				echo '<br>';
+			
+				// Limpar o array de produtos para a próxima iteração do loop de pedido
+				$data = array();
 
 
 			$cpfCliFormat = substr($cpfCli, 0, 3) . '.' . substr($cpfCli, 3, 3) . '.' . substr($cpfCli, 6, 3) . '-' . substr($cpfCli, 9, 2);
@@ -266,18 +293,17 @@ class Integracao extends CI_Controller
 			$data['pedidos'][$key] = array(
 				 'PedidoTray' => $pedido->Order->id,
 				 'IdVendaCDS' => '',
-				// 'Endereco' => $logradouro,
-				// 'CEP' => $cep,
-				// 'Num' => $numero,
-				// 'Compl' => $complemento,
-				// 'Bairro' => $bairro,
-				// 'Cidade' => $cidade,
-				// 'UF' => $uf,
-				// 'Fone' => $telefone,
-				// 'Email' => $email,
-				'Situacao' => '',
+				 'Situacao' => '',
 			);
 
+		// 	$data['produtos'] = array(
+		// 		'ID' => $prodId,
+		// 		'codigo' => $prodRef,
+		// 		'descricao' => $prodDescricao,
+		// 		'venda' => $vendaprc,
+		// 		'compra' => $compraprc,
+		// 		'idVendaProd' => $idvendaprod,
+		//    );
 			
 			$retornoGetCli = $this->integracaodao->getCliente($cpfCliFormat);
 
@@ -295,27 +321,39 @@ class Integracao extends CI_Controller
 
 			//pedido
 			$retornoGetPed = $this->integracaodao->getPedido($pedido->Order->id);
-
-			if (!$retornoGetPed){
-				$data['pedidos'][$key]['Situacao'] = 'Pedido inserido com Sucesso';
-
-				$data['pedidos'][$key]['IdVendaCDS'] = '1205';
-				//validar produtos se tem cadastrado 
-				//se todos produtos ok continua
-				//inserir venda
-				//inserir vendaprod
-				//ate aqui é uma pre venda- so ate aqui para me mostrar
+			// $retornoGetProd = $this->integracaodao->getProduto($produto->ProductsSold->reference);
 
 
-				//depois falo o proximo
-				//situacao erro no pedido produto x nao cadastrado
+			
 
+			
+			// if ($retornoGetProd) {
+				if (!$retornoGetPed){
+					$data['pedidos'][$key]['Situacao'] = 'Pedido inserido com Sucesso | Produtos: ' . $retornoGetPed;
+	
+					$data['pedidos'][$key]['IdVendaCDS'] = $retornoGetPed;
+					//validar produtos se tem cadastrado 
+					//se todos produtos ok continua
+					//inserir venda
+					//inserir vendaprod
+					//ate aqui é uma pre venda- so ate aqui para me mostrar
+	
+	
+					//depois falo o proximo
+					//situacao erro no pedido produto x nao cadastrado
+	
+	
+	
+				}else{			
+				  $data['pedidos'][$key]['Situacao'] = 'Pedido ja Consta na cds '. $retornoGetPed;
+				  $data['pedidos'][$key]['IdVendaCDS'] = $retornoGetPed;
+				}
+				
+			// } else {
+			// 	$data['pedidos'][$key]['Situacao'] = 'Produto não cadastrado';
+			// 	$data['pedidos'][$key]['IdVendaCDS'] = $retornoGetProd;
+			// }
 
-
-			}else{			
-			  $data['pedidos'][$key]['Situacao'] = 'Pedido ja Consta na cds '. $retornoGetPed;
-			  $data['pedidos'][$key]['IdVendaCDS'] = $retornoGetPed;
-			}
 
 			//fim pedido
 
@@ -337,7 +375,7 @@ class Integracao extends CI_Controller
         // Pegando os clientes do BD e adicionando a variavel $data
        // $data['clientes'] = $this->integracaodao->obterTodosClientes();
 
-        $this->load->view('home', $data);
+        // $this->load->view('home', $data);
 
 
 	}

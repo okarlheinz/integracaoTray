@@ -150,6 +150,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		#grades_produtos_wrapper>div:nth-of-type(1),
 		#dados_loja_wrapper>div:nth-of-type(1),
 		#produtos_inexistentes_wrapper>div:nth-of-type(1),
+		#Clientes_wrapper>div:nth-of-type(1),
 		#Pedidos_wrapper>div:nth-of-type(1),
 		#notas_Emitidas_wrapper>div:nth-of-type(1),
 		#atualiza_grades_produtos_wrapper>div:nth-of-type(1) {
@@ -162,6 +163,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		#grades_produtos_wrapper>div:nth-of-type(3),
 		#dados_loja_wrapper>div:nth-of-type(3),
 		#produtos_inexistentes_wrapper>div:nth-of-type(3),
+		#Clientes_wrapper>div:nth-of-type(3),
 		#Pedidos_wrapper>div:nth-of-type(3),
 		#notas_Emitidas_wrapper>div:nth-of-type(3),
 		#atualiza_grades_produtos_wrapper>div:nth-of-type(3) {
@@ -287,8 +289,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<th style="white-space:nowrap;text-align:center;">UF</th>
 								<th style="white-space:nowrap;text-align:center;">Fone</th>
 								<th style="white-space:nowrap;text-align:center;">Email</th>
-								<th style="white-space:nowrap;text-align:center;">Retorno</th>
-								
+								<th style="white-space:nowrap;text-align:center;">Retorno</th>	
 							</tr>
 						</thead>
 						<tbody>
@@ -323,14 +324,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<h1>Clientes Tray</h1>
+					<h1>Pedidos</h1>
 					<table id="Pedidos" name="Pedidos" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-						<thead style="background-color: #04bf04; color:#FFFFFF">
+						<thead style="background-color: brown; color:#FFFFFF">
 							<tr>
 								<th style="white-space:nowrap;text-align:center;">Id Pedido Site</th>
 								<th style="white-space:nowrap;text-align:center;">Id Venda CDS</th>
-								<th style="white-space:nowrap;text-align:center;">Retorno</th>
-								
+								<th style="white-space:nowrap;text-align:center;">Retorno</th>								
 							</tr>
 						</thead>
 						<tbody>
@@ -339,7 +339,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<tr>
 										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['PedidoTray']) ?></td>
 										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['IdVendaCDS']) ?></td>
-										
 										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['Situacao']) ?></td>
 									</tr>
 							<?php }
@@ -350,7 +349,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Fim Pedidos -->
-
 
 			<br>
 

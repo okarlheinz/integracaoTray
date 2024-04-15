@@ -47,7 +47,7 @@ $(document).ready(function()
     }
   });  
 
-  $("#Pedidos").DataTable({
+  $("#Pedidos, #Clientes").DataTable({
     columnDefs: [ 
     {
             className: 'control',
