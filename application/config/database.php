@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-	$servidor = '.\CDS';
+	$servidor = '.\SQLEXPRESS';
 	$banco = 'BDComercialCiaDasRacoes';
 	$usuario = 'cdsweb';
 	$senha = 'dificil!@#';

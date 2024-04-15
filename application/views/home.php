@@ -152,6 +152,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		#produtos_inexistentes_wrapper>div:nth-of-type(1),
 		#Clientes_wrapper>div:nth-of-type(1),
 		#Pedidos_wrapper>div:nth-of-type(1),
+		#Produtos_wrapper>div:nth-of-type(1),
 		#notas_Emitidas_wrapper>div:nth-of-type(1),
 		#atualiza_grades_produtos_wrapper>div:nth-of-type(1) {
 			background: #f5f5f5;
@@ -165,6 +166,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		#produtos_inexistentes_wrapper>div:nth-of-type(3),
 		#Clientes_wrapper>div:nth-of-type(3),
 		#Pedidos_wrapper>div:nth-of-type(3),
+		#Produtos_wrapper>div:nth-of-type(3),
 		#notas_Emitidas_wrapper>div:nth-of-type(3),
 		#atualiza_grades_produtos_wrapper>div:nth-of-type(3) {
 			background: #f5f5f5;
@@ -317,6 +319,45 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Fim Clientes -->
+
+
+			<!-- Inicio Produtos -->
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h1>Produtos</h1>
+					<table id="Produtos" name="Produtos" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+						<thead style="background-color: #4169E1; color:#FFFFFF">
+							<tr>
+								<th style="white-space:nowrap;text-align:center;">Id Pedido Site</th>
+								<th style="white-space:nowrap;text-align:center;">ID Produto</th>
+								<th style="white-space:nowrap;text-align:center;">Codigo</th>								
+								<th style="white-space:nowrap;text-align:center;">Descricao</th>								
+								<th style="white-space:nowrap;text-align:center;">Qtd</th>								
+								<th style="white-space:nowrap;text-align:center;">VendaPRC</th>								
+								<th style="white-space:nowrap;text-align:center;">CompraPRC</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<?php if (!empty($Produtos)) {
+								foreach ($Produtos as $row) { ?>
+									<tr>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['idvendaprod']) ?></td>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['prodId']) ?></td>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['prodRef']) ?></td>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['prodDescricao']) ?></td>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['qtd']) ?></td>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['vendaprc']) ?></td>
+										<td style='vertical-align:middle;white-space:nowrap;text-align:center;'><?php echo trim($row['compraprc']) ?></td>
+									</tr>
+							<?php }
+							} ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Fim Produtos -->
 
 
 			

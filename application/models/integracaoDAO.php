@@ -254,7 +254,7 @@ class integracaoDAO extends CI_Model
 
 	public function getProduto($prodRef) 
 	{
-		$sql = "SELECT codigo, descricao, vendaprc, compraprc FROM produto WHERE codigo = ?";
+		$sql = "SELECT TOP 1 codigo, descricao, vendaprc, compraprc FROM produto WHERE codigo = ?";
 		$query = $this->db->query($sql, array($prodRef));
 
 		if ($query->num_rows() > 0) {
