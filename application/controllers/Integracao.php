@@ -310,19 +310,19 @@ class Integracao extends CI_Controller
 			// 	);
 
 
-			// 	// TESTE SE OS PRODUTOS FORAM ENCONTRADOS
+			// 	// TESTE SE OS PRODUTOS FORAM ENCONTRADOS"
 
-			// 	// echo '<pre>';			
-			// 	// print_r(
-			// 	// 	'IDVENDA: ' . $id . ' = ' . $data['Produtos'][$key]['idvendaprod'] .
-			// 	// 		' | SKU: ' . $data['Produtos'][$key]['prodId'] .
-			// 	// 		' | CODIGO CDS: ' . $data['Produtos'][$key]['prodRef'] .
-			// 	// 		' | DESCRICAO: ' . $data['Produtos'][$key]['prodDescricao'] .
-			// 	// 		' | VENDA: ' . $data['Produtos'][$key]['vendaprc'] .
-			// 	// 		' | COMPRA: ' . $data['Produtos'][$key]['compraprc'] .
-			// 	// 		' | QTD: ' . $data['Produtos'][$key]['qtd']
-			// 	// );
-			// }
+				// echo '<pre>';			
+				// print_r(
+				// 	'IDVENDA: ' . $id . ' = ' . $data['Produtos'][$key]['idvendaprod'] .
+				// 		' | SKU: ' . $data['Produtos'][$key]['prodId'] .
+				// 		' | CODIGO CDS: ' . $data['Produtos'][$key]['prodRef'] .
+				// 		' | DESCRICAO: ' . $data['Produtos'][$key]['prodDescricao'] .
+				// 		' | VENDA: ' . $data['Produtos'][$key]['vendaprc'] .
+				// 		' | COMPRA: ' . $data['Produtos'][$key]['compraprc'] .
+				// 		' | QTD: ' . $data['Produtos'][$key]['qtd']
+				// );
+			}
 			// Agora você tem todos os produtos desta venda armazenados no array $data
 
 			//pedido
